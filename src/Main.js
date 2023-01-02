@@ -29,7 +29,7 @@ const Main = () => {
             <Nav guList={guList} />
 
             <Routes>
-                <Route path='/all' element={
+                <Route path='/' element={
                     <All foodList={foodList} />
                 }
                 />
