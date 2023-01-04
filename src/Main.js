@@ -5,6 +5,8 @@ import { Route, Routes } from 'react-router-dom';
 import List from './components/List';
 import All from './components/All'
 import Wrap from './components/Wrap';
+import Store from './components/Store';
+
 
 const serviceKey = 'nmPIjJ%2Bj0FufPiP6k4BLPlq3n%2B46QZN%2B6hgSINrrxqk3nNwnoHX2ynqX6Dlgr3xFeivGPus2vgmh6Ifx1vdu1g%3D%3D';
 
@@ -27,17 +29,10 @@ const Main = () => {
     return (
         <Wrap>
             <Nav guList={guList} />
-
             <Routes>
-                <Route path='/' element={
-                    <All foodList={foodList} />
-                }
-                />
-                <Route path="/list/:id" element={
-                    <List foodList={foodList} guList={guList} />
-                }
-                />
-
+                <Route path='/' element={<All foodList={foodList} />} />
+                <Route path="/list/:id" element={<List foodList={foodList} guList={guList} />} />
+                <Route path="/store/:id" element={<Store foodList={foodList} guList={guList} />} />
             </Routes>
         </Wrap>
     )

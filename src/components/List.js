@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useMemo, useState } from 'react'
+import { useParams, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const BBOX = styled.div`
@@ -35,35 +35,41 @@ margin: 0 0 20px 0;
 `
 
 const List = ({ foodList, guList }) => {
+
     const { id } = useParams();
     const [gList, setGlist] = useState([]);
     const gu = foodList.filter(it => it.GUGUN_NM === id);
     useEffect(() => {
         setGlist(gu)
-    }, [id]);
+    }, [id, foodList]);
 
-    console.log(id, gu, gList)
+    console.log(gList)
 
     return (
         <div>
-            <UL>
-                {
-                    gList.map((it, idx) => {
-                        return (
-                            <li>
-                                <figure>
-                                    <BOX><img src={it.MAIN_IMG_NORMAL} alt="" /></BOX>
-                                </figure>
-                                <BBOX>{it.TITLE}</BBOX>
-                                <BOX>{it.GUGUN_NM}</BOX>
-                                <PBOX>{it.ITEMCNTNTS}</PBOX>
-                                <BOX>{it.USAGE_DAY_WEEK_AND_TIME}</BOX>
+            {
+                gList &&
+                <UL>
+                    {
+                        gList.map((it, idx) => {
+                            return (
+                                <li key={idx}>
+                                    <Link to={`/store/${it.UC_SEQ}`}>
+                                        <figure>
+                                            <BOX><img src={it.MAIN_IMG_NORMAL} alt="" /></BOX>
+                                        </figure>
+                                        <BBOX>{it.TITLE}</BBOX>
+                                        <BOX>{it.GUGUN_NM}</BOX>
+                                        <PBOX>{it.ITEMCNTNTS}</PBOX>
+                                        <BOX>{it.USAGE_DAY_WEEK_AND_TIME}</BOX>
+                                    </Link>
 
-                            </li>
-                        )
-                    })
-                }
-            </UL>
+                                </li>
+                            )
+                        })
+                    }
+                </UL>
+            }
         </div>
     )
 }

@@ -13,17 +13,23 @@ white-space: pre-line;
 const Nav = ({ guList }) => {
 
     return (
-        <GU>
-            {
-                guList.map((it, idx) => {
-                    return (
-                        <li>
-                            <Link to={`/list/${it}`}>{it}</Link>
-                        </li>
-                    )
-                })
-            }
-        </GU>
+        <>
+            <h1>
+                <a href="/busan_food">부산맛집 지도</a>
+            </h1>
+            <GU>
+                {
+                    guList.map((it, idx) => {
+                        return (
+                            <li key={idx}>
+                                <Link to={`/list/${it}`}>{it}</Link>
+                            </li>
+                        )
+                    })
+                }
+            </GU>
+        </>
+
     )
 }
 
